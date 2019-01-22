@@ -1,0 +1,8 @@
+<div class="page-header">
+  <h1>New Habit</h1>
+</div>
+
+<%= form_for(habit, {action: habitsPath(), method: "POST"}) { %>
+  <%= partial("habits/form.html") %>
+  <a href="<%= habitsPath() %>" class="btn btn-warning" data-confirm="Are you sure?">Cancel</a>
+<% } %>

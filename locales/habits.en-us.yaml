@@ -1,0 +1,6 @@
+- id: "habit.created.success"
+  translation: "Habit was successfully created."
+- id: "habit.updated.success"
+  translation: "Habit was successfully updated."
+- id: "habit.destroyed.success"
+  translation: "Habit was successfully destroyed."

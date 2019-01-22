@@ -1,0 +1,35 @@
+<div class="page-header">
+  <h1>Habits</h1>
+</div>
+<ul class="list-unstyled list-inline">
+  <li><a href="<%= newHabitsPath() %>" class="btn btn-primary">Create New Habit</a></li>
+</ul>
+
+<table class="table table-striped">
+  <thead>
+  <th>Name</th>
+    <th>Description</th>
+    <th>Timeframe</th>
+    <th>&nbsp;</th>
+  </thead>
+  <tbody>
+    <%= for (habit) in habits { %>
+      <tr>
+      <td><%= habit.Name %></td>
+        <td><%= habit.Description %></td>
+        <td><%= habit.Timeframe %></td>
+        <td>
+          <div class="pull-right">
+            <a href="<%= habitPath({ habit_id: habit.ID }) %>" class="btn btn-info">View</a>
+            <a href="<%= editHabitPath({ habit_id: habit.ID }) %>" class="btn btn-warning">Edit</a>
+            <a href="<%= habitPath({ habit_id: habit.ID }) %>" data-method="DELETE" data-confirm="Are you sure?" class="btn btn-danger">Destroy</a>
+          </div>
+        </td>
+      </tr>
+    <% } %>
+  </tbody>
+</table>
+
+<div class="text-center">
+  <%= paginator(pagination) %>
+</div>

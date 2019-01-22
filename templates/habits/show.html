@@ -1,0 +1,19 @@
+<div class="page-header">
+  <h1>Habit#Show</h1>
+</div>
+
+<ul class="list-unstyled list-inline">
+  <li class="list-inline-item"><a href="<%= habitsPath() %>" class="btn btn-info">Back to all Habits</a></li>
+  <li class="list-inline-item"><a href="<%= editHabitPath({ habit_id: habit.ID })%>" class="btn btn-warning">Edit</a></li>
+  <li class="list-inline-item"><a href="<%= habitPath({ habit_id: habit.ID })%>" data-method="DELETE" data-confirm="Are you sure?" class="btn btn-danger">Destroy</a>
+</ul>
+
+<p>
+  <strong>Name</strong>: <%= habit.Name %>
+</p>
+<p>
+  <strong>Description</strong>: <%= habit.Description %>
+</p>
+<p>
+  <strong>Timeframe</strong>: <%= habit.Timeframe %>
+</p>
