@@ -3,8 +3,10 @@ development:
   database: "habbits_development"
   host: "localhost"
   port: "3306"
-  user: "root"
-  password: "root"
+  # You'll need to add a user to your mysql server with this username/password
+  # It's a randow string here because some mysql servers get mad at easy passwords
+  user: "habbits"
+  password: "6Y1!sUMf!%NEikl%56"
 
 test:
   dialect: "mysql"
@@ -19,8 +21,8 @@ test:
   database: "habbits_test"
   host: "localhost"
   port: "3306"
-  user: "root"
-  password: "root"
+  user: "habbits"
+  password: "6Y1!sUMf!%NEikl%56"
 
 production:
   #
