@@ -1,0 +1,9 @@
+create_table("habits") {
+	t.Column("id", "uuid", {primary: true})
+	t.Column("name", "string", {})
+	t.Column("description", "string", {})
+	t.Column("timeframe", "integer", {})
+
+	t.Column("user_id", "uuid", {})
+	t.ForeignKey("user_id", {"users": ["id"]}, {"on_delete": "cascade"})
+}
