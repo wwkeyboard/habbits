@@ -1,6 +1,8 @@
 package actions
 
 import (
+	"fmt"
+
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/pop"
 	"github.com/pkg/errors"
@@ -73,7 +75,19 @@ func (v HabitsResource) Show(c buffalo.Context) error {
 // New renders the form for creating a new Habit.
 // This function is mapped to the path GET /habits/new
 func (v HabitsResource) New(c buffalo.Context) error {
-	return c.Render(200, r.Auto(c, &models.Habit{}))
+	fmt.Println("********************")
+	fmt.Println(c.Session().Get("current_user"))
+	fmt.Println("********************")
+	u, ok := c.Data()["current_user"].(models.User)
+	if !ok {
+		return errors.New("current_user not set correctly")
+	}
+
+	h := &models.Habit{
+		User: &u,
+	}
+
+	return c.Render(200, r.Auto(c, h))
 }
 
 // Create adds a Habit to the DB. This function is mapped to the

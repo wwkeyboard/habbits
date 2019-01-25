@@ -17,6 +17,7 @@ type Habit struct {
 	Name        string    `json:"name" db:"name"`
 	Description string    `json:"description" db:"description"`
 	Timeframe   int       `json:"timeframe" db:"timeframe"`
+	User        *User     `belongs_to:"user" json:"user_id" db:"user_id"`
 }
 
 // String is not required by pop and may be deleted
