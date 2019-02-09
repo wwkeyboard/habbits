@@ -24,7 +24,7 @@ type User struct {
 	Password             string `json:"-" db:"-"`
 	PasswordConfirmation string `json:"-" db:"-"`
 
-	Habits Habit `has_many:"habit"`
+	Habits Habits `has_many:"habit" order_by:"created_at"`
 }
 
 // Create wraps up the pattern of encrypting the password and

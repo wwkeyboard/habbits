@@ -10,6 +10,7 @@ import (
 	"github.com/gobuffalo/validate/validators"
 )
 
+// Habit is something you are trying to make a regular occurrence
 type Habit struct {
 	ID          uuid.UUID `json:"id" db:"id"`
 	CreatedAt   time.Time `json:"created_at" db:"created_at"`
@@ -17,7 +18,9 @@ type Habit struct {
 	Name        string    `json:"name" db:"name"`
 	Description string    `json:"description" db:"description"`
 	Timeframe   int       `json:"timeframe" db:"timeframe"`
-	User        *User     `belongs_to:"user" json:"user_id" db:"user_id"`
+
+	UserID uuid.UUID `json:"user" db:"user_id"`
+	User   User      `belongs_to:"user"`
 }
 
 // String is not required by pop and may be deleted

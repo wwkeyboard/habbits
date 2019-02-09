@@ -19,7 +19,7 @@
       <td><%= habit.Name %></td>
         <td><%= habit.Description %></td>
         <td><%= habit.Timeframe %></td>
-        <td><%= habit.User %></td>
+        <td><%= habit.User.Email %></td>
         <td>
           <div class="pull-right">
             <a href="<%= habitPath({ habit_id: habit.ID }) %>" class="btn btn-info">View</a>

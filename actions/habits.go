@@ -1,8 +1,6 @@
 package actions
 
 import (
-	"fmt"
-
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/pop"
 	"github.com/pkg/errors"
@@ -42,7 +40,7 @@ func (v HabitsResource) List(c buffalo.Context) error {
 	q := tx.PaginateFromParams(c.Params())
 
 	// Retrieve all Habits from the DB
-	if err := q.All(habits); err != nil {
+	if err := q.Eager().All(habits); err != nil {
 		return errors.WithStack(err)
 	}
 
@@ -65,7 +63,7 @@ func (v HabitsResource) Show(c buffalo.Context) error {
 	habit := &models.Habit{}
 
 	// To find the Habit the parameter habit_id is used.
-	if err := tx.Find(habit, c.Param("habit_id")); err != nil {
+	if err := tx.Eager().Find(habit, c.Param("habit_id")); err != nil {
 		return c.Error(404, err)
 	}
 
@@ -75,16 +73,13 @@ func (v HabitsResource) Show(c buffalo.Context) error {
 // New renders the form for creating a new Habit.
 // This function is mapped to the path GET /habits/new
 func (v HabitsResource) New(c buffalo.Context) error {
-	fmt.Println("********************")
-	fmt.Println(c.Session().Get("current_user"))
-	fmt.Println("********************")
-	u, ok := c.Data()["current_user"].(models.User)
+	u, ok := c.Value("current_user").(*models.User)
 	if !ok {
 		return errors.New("current_user not set correctly")
 	}
 
 	h := &models.Habit{
-		User: &u,
+		User: *u,
 	}
 
 	return c.Render(200, r.Auto(c, h))
@@ -93,8 +88,15 @@ func (v HabitsResource) New(c buffalo.Context) error {
 // Create adds a Habit to the DB. This function is mapped to the
 // path POST /habits
 func (v HabitsResource) Create(c buffalo.Context) error {
+	u, ok := c.Value("current_user").(*models.User)
+	if !ok {
+		return errors.New("current_user not set correctly")
+	}
+
 	// Allocate an empty Habit
-	habit := &models.Habit{}
+	habit := &models.Habit{
+		User: *u,
+	}
 
 	// Bind habit to the html form elements
 	if err := c.Bind(habit); err != nil {
