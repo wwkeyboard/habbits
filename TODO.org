@@ -2,7 +2,8 @@
 #+STARTUP: overview
 
 * TODO Bootstrap for lapout
-
 * TODO Checks listed on habit show
-
 * TODO Check created on habit show
+* TODO checks-per-day logic
+ Needs to account for the timeframe. Checks within the timeframe of
+ other checks shouldn't be allowed.
