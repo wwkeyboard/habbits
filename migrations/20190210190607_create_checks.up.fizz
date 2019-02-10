@@ -1,0 +1,6 @@
+create_table("checks") {
+	t.Column("id", "uuid", {primary: true})
+  
+	t.Column("habit_id", "uuid", {})
+  t.ForeignKey("habit_id", {"users": ["id"]}, {"on_delete": "cascade"})
+}

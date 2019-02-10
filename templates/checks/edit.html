@@ -1,0 +1,8 @@
+<div class="page-header">
+  <h1>Edit Check</h1>
+</div>
+
+<%= form_for(check, {action: checkPath({ check_id: check.ID }), method: "PUT"}) { %>
+  <%= partial("checks/form.html") %>
+  <a href="<%= checkPath({ check_id: check.ID }) %>" class="btn btn-warning" data-confirm="Are you sure?">Cancel</a>
+<% } %>

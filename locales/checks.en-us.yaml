@@ -1,0 +1,6 @@
+- id: "check.created.success"
+  translation: "Check was successfully created."
+- id: "check.updated.success"
+  translation: "Check was successfully updated."
+- id: "check.destroyed.success"
+  translation: "Check was successfully destroyed."
